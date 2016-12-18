@@ -1,0 +1,16 @@
+<h1>Hello World from Hello.html.erb</h1>
+<p>this is my hello page.</p>
+<%= 1 + 1 %>
+<br />
+<% target = "world" %>
+<%= "Hello #{target}" %>
+<br />
+<% @array.each do |n| %>
+  <%=  n %><br />
+<% end %>
+<%= link_to("index", {:controller => 'demo', :action => 'index'}) %>
+<%= link_to("parameters in the link", {:action => 'hello', :page => 6, :id => '40'}) %>
+<br />
+ID: <%= @id %><br />
+ID: <%= params[:id] %><br />
+Page: <%= @page %>
