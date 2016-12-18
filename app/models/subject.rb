@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
 
-  has_one :page
+  has_many :pages
 
   scope :visibile, lambda { where(:visibile => true) }
   scope :invisibile, lambda { where(:visibile => false) }
