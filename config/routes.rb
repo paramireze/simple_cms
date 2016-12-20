@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'subjects/index'
-  get 'subjects/show'
-  get 'subjects/new'
-  get 'subjects/edit'
-  get 'subjects/delete'
-
   root  'demo#index'
+
+  #gives all 8 actions on subject
+  resources :subjects do
+    member do
+      get :delete
+    end
+  end
 
   get   'demo/index'
   get   'demo/hello'
