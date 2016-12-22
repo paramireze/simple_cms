@@ -1,4 +1,7 @@
 class SectionsController < ApplicationController
+
+  layout 'admin'
+
   def index
     @sections = Section.all
   end
@@ -15,6 +18,9 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
     if @section.save
       redirect_to(sections_path)
+    else
+      flash[:notice] = 'you did not create a record...'
+      redirect_to(new_section_path)
     end
   end
 
@@ -42,7 +48,7 @@ class SectionsController < ApplicationController
   end
 
   def section_params
-    params.require(:section).permit(:name, :position, :visibile, :content)
+    params.require(:section).permit(:page_id, :name, :position, :visibile, :content)
   end
 
 end
