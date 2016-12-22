@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
-  get 'pages/index'
-
-  get 'pages/show'
-
-  get 'pages/new'
-
-  get 'pages/edit'
-
-  get 'pages/delete'
-
+  
   root  'demo#index'
 
   #gives all 8 actions on subject
