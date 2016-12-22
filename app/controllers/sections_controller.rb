@@ -31,7 +31,7 @@ class SectionsController < ApplicationController
   def update
     @section = Section.find(params[:id])
     if @section.update_attributes(section_params)
-      flash[:notification] = "hey, you updated a section. Well done matey!"
+      flash[:notice] = "hey, you updated a section. Well done matey!"
       redirect_to(sections_path)
     end
   end
@@ -43,7 +43,7 @@ class SectionsController < ApplicationController
   def destroy
     @section = Section.find(params[:id])
     @section.destroy
-    flash[:notification] = "section '#{@section.name}' has been destroyed!"
+    flash[:notice] = "section '#{@section.name}' has been destroyed!"
     redirect_to(sections_path)
   end
 
