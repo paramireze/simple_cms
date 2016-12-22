@@ -6,28 +6,7 @@
   <h2>Create Section</h2>
 
   <%= form_for(@section, :url => sections_path, :method => 'post') do |f| %>
-      <table summary="Section form fiel ds">
-        <tr>
-          <th>Name</th>
-          <td><%= f.text_field(:name) %></td>
-        </tr>
-        <tr>
-          <th>Page Id</th>
-          <td><%= f.text_field(:page_id) %></td>
-        </tr>
-        <tr>
-          <th>Position</th>
-          <td><%= f.text_field(:position) %></td>
-        </tr>
-        <tr>
-          <th>Visibile</th>
-          <td><%= f.text_field(:visibile) %></td>
-        </tr>
-        <tr>
-          <th>content</th>
-          <td><%= f.text_field(:content) %></td>
-        </tr>
-      </table>
+      <%= render(:partial => 'form', :locals => {:f => f}) %>
       <div class="form-buttons">
         <%= f.submit("Create Section") %>
       </div>
