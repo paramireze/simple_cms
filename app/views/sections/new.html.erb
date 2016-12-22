@@ -1,3 +1,5 @@
+<% @page_title = "New Section" %>
+
 <%= link_to("<< Back to List", subjects_path, :class => 'back-link') %>
 
 <div class="sections new">
@@ -8,6 +10,10 @@
         <tr>
           <th>Name</th>
           <td><%= f.text_field(:name) %></td>
+        </tr>
+        <tr>
+          <th>Page Id</th>
+          <td><%= f.text_field(:page_id) %></td>
         </tr>
         <tr>
           <th>Position</th>
@@ -21,7 +27,6 @@
           <th>content</th>
           <td><%= f.text_field(:content) %></td>
         </tr>
-
       </table>
       <div class="form-buttons">
         <%= f.submit("Create Section") %>

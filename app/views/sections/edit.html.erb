@@ -1,3 +1,5 @@
+<% @page_title = "Edit Sections" %>
+
 <%= link_to("<< Back to List", sections_path, :class => 'back-link') %>
 
 <div class="sections edit">
@@ -10,8 +12,16 @@
           <td><%= f.text_field(:name) %></td>
         </tr>
         <tr>
+          <th>Id</th>
+          <td><%= f.text_field(:id) %></td>
+        </tr>
+        <tr>
           <th>Position</th>
           <td><%= f.text_field(:position) %></td>
+        </tr>
+        <tr>
+          <th>Page Id</th>
+          <td><%= f.text_field(:page_id) %></td>
         </tr>
         <tr>
           <th>Visibile</th>
