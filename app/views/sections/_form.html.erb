@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <th>Page Id</th>
-    <td><%= f.text_field(:page_id) %></td>
+    <td><%= f.select(:page_id, @pages.map {|p| [p.name, p.id]}) %></td>
   </tr>
   <tr>
     <th>Visibile</th>

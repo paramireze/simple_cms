@@ -13,6 +13,8 @@ class SectionsController < ApplicationController
   def new
     @section = Section.new
     @section_count = Section.count + 1
+    @pages = Page.sorted
+
 
   end
 
@@ -22,6 +24,7 @@ class SectionsController < ApplicationController
       redirect_to(sections_path)
     else
       @section_count = Section.count + 1
+      @pages = Page.sorted
       flash[:notice] = 'you did not create a record...'
       redirect_to(new_section_path)
     end
@@ -30,6 +33,7 @@ class SectionsController < ApplicationController
   def edit
     @section = Section.find(params[:id])
     @section_count = Section.count
+    @pages = Page.sorted
   end
 
   def update
@@ -39,6 +43,10 @@ class SectionsController < ApplicationController
     if @section.update_attributes(section_params)
       flash[:notice] = "hey, you updated a section. Well done matey!"
       redirect_to(sections_path)
+    else
+      flash[:notice] = "failed update you imbicile"
+      @section_count = Section.count
+      render('edit')
     end
   end
 
