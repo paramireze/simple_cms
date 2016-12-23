@@ -12,6 +12,8 @@ class SectionsController < ApplicationController
 
   def new
     @section = Section.new
+    @section_count = Section.count + 1
+
   end
 
   def create
@@ -19,6 +21,7 @@ class SectionsController < ApplicationController
     if @section.save
       redirect_to(sections_path)
     else
+      @section_count = Section.count + 1
       flash[:notice] = 'you did not create a record...'
       redirect_to(new_section_path)
     end
@@ -26,10 +29,13 @@ class SectionsController < ApplicationController
 
   def edit
     @section = Section.find(params[:id])
+    @section_count = Section.count
   end
 
   def update
     @section = Section.find(params[:id])
+    @section_count = Section.count + 1
+
     if @section.update_attributes(section_params)
       flash[:notice] = "hey, you updated a section. Well done matey!"
       redirect_to(sections_path)

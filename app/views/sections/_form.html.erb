@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>Position</th>
-    <td><%= f.text_field(:position) %></td>
+    <td><%= f.select(:position, 1..@section_count) %></td>
   </tr>
   <tr>
     <th>Page Id</th>
