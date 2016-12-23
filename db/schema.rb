@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219022721) do
+ActiveRecord::Schema.define(version: 20161223224209) do
 
   create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "first_name",      limit: 25
@@ -54,10 +54,11 @@ ActiveRecord::Schema.define(version: 20161219022721) do
     t.integer  "page_id"
     t.string   "name"
     t.integer  "position"
-    t.boolean  "visibile",                 default: false
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.boolean  "visibile",                   default: false
+    t.text     "content",      limit: 65535
+    t.string   "content_type", limit: 55
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.index ["page_id"], name: "index_sections_on_page_id", using: :btree
   end
 
