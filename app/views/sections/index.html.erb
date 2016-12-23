@@ -10,6 +10,8 @@
       <th>Id</th>
       <th>Page Id</th>
       <th>Name</th>
+      <th>Content</th>
+      <th>Content Type</th>
       <th>Visibile</th>
 
       <th>Action</th>
@@ -19,7 +21,9 @@
           <td><%= section.position %></td>
           <td><%= section.id %></td>
           <td><%= section.page_id %></td>
-          <td><%= section.name %></td>
+          <td><%= truncate(section.name, :length => 30, :separator => "...") %></td>
+          <td><%= truncate(section.content, :length => 30, :separator => "...") %></td>
+          <td><%= section.content_type %></td>
           <td class="center"><%= status_tag(section.visibile) %></td>
           <td class="actions">
             <%= link_to("Show", section_path(section), :class => 'action show') %>
