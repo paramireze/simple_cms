@@ -1,7 +1,7 @@
 <table summary="Section form fields">
   <tr>
     <th>Name</th>
-    <td><%= f.text_field(:name) %></td>
+    <td><%= f.text_area(:name, :size => '40x10') %></td>
   </tr>
   <tr>
     <th>Id</th>
@@ -20,7 +20,10 @@
     <td><%= f.check_box(:visibile) %></td>
   </tr>
   <tr>
-    <th>Content type</th>
-    <td><%= f.text_field(:content) %></td>
+    <th>Content</th>
+    <td>
+      <%= f.radio_button(:content, 'text') %> Text
+      <%= f.radio_button(:content, 'html') %> HTML
+    </td>
   </tr>
 </table>
