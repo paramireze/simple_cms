@@ -7,4 +7,7 @@ class Subject < ApplicationRecord
   scope :sorted, lambda { order("position asc")}
   scope :newest_first, lambda { order("created_at desc")}
   scope :search, lambda {|query| where (["name like ?", "%#{query}%"])}
+
+  validates_presence_of :name
+
 end
