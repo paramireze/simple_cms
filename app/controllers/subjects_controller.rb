@@ -65,6 +65,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name, :position, :visible, :created_at)
+    params.require(:subject).permit(:name, :position, :visible, :created_at, :permalink)
   end
 end
