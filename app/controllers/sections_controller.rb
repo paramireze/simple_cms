@@ -2,6 +2,8 @@ class SectionsController < ApplicationController
 
   layout 'admin'
 
+  before_action :find_pages, :only => [:new, :create, :edit, :update]
+  before_action :set_section_count, :only => [:new, :create, :edit, :update]
   def index
     @sections = Section.all
   end
@@ -12,10 +14,6 @@ class SectionsController < ApplicationController
 
   def new
     @section = Section.new
-    @section_count = Section.count + 1
-    @pages = Page.sorted
-
-
   end
 
   def create
@@ -23,8 +21,6 @@ class SectionsController < ApplicationController
     if @section.save
       redirect_to(sections_path)
     else
-      @section_count = Section.count + 1
-      @pages = Page.sorted
       flash[:notice] = 'you did not create a record...'
       redirect_to(new_section_path)
     end
@@ -32,20 +28,16 @@ class SectionsController < ApplicationController
 
   def edit
     @section = Section.find(params[:id])
-    @section_count = Section.count
-    @pages = Page.sorted
   end
 
   def update
     @section = Section.find(params[:id])
-    @section_count = Section.count + 1
 
     if @section.update_attributes(section_params)
       flash[:notice] = "hey, you updated a section. Well done matey!"
       redirect_to(sections_path)
     else
       flash[:notice] = "failed update you imbicile"
-      @section_count = Section.count
       render('edit')
     end
   end
@@ -61,8 +53,21 @@ class SectionsController < ApplicationController
     redirect_to(sections_path)
   end
 
+  private
+
   def section_params
     params.require(:section).permit(:page_id, :name, :position, :visibile, :content, :content_type)
   end
 
+  def find_pages
+    @pages = Page.sorted
+  end
+
+  def set_section_count
+    @section_count = Section.count
+
+    if params[:action] == 'new' || params[:action] == 'create'
+      @section_count += 1
+    end
+  end
 end
