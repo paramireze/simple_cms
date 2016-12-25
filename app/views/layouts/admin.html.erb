@@ -17,6 +17,10 @@
 
     <div id="content">
       <%= yield %>
+      <%= link_to("subjects", subjects_path, :class => 'subject list') %>
+      <%= link_to("pages", pages_path, :class => 'page list') %>
+      <%= link_to("sections", sections_path, :class => 'section list') %>
+
     </div>
   </div>
   <div id="footer">
