@@ -1,8 +1,12 @@
 class AdminUser < ApplicationRecord
+
+  has_secure_password
+
   has_and_belongs_to_many :pages
+
   has_many :section_edits
   has_many :sections, :through => :section_edits
-  #self.table_name ="admin_users"
+  #self.table_name ="admin_users" #for specifying db name
 
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
   FORBIDDEN_USERNAMES = ['testtest', 'sherlock', 'nohombre']
@@ -51,7 +55,5 @@ class AdminUser < ApplicationRecord
     if Time.now.wday == 7
       erroprs.add(:base, "no new users on mondays.")
     end
-
   end
-
 end
