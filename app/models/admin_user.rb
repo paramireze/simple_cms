@@ -25,6 +25,8 @@ class AdminUser < ApplicationRecord
                     :format => EMAIL_REGEX,
                     :confirmation => true
 
+  validates :password, length:{minimum:6}, on: :create
+
   validate :username_is_allowed
   validate :no_new_users_on_monday, :on => :create
 
