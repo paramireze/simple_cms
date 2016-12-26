@@ -17,13 +17,6 @@ Rails.application.routes.draw do
   post 'access/attempt_login'
   get  'access/logout'
 
-  #gives all 8 actions on admin_users
-  resources :admin_user do
-    member do
-      get :delete
-    end
-  end
-
 
   #gives all 8 actions on subject
   resources :subjects do
