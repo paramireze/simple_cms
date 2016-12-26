@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'admin_user/index'
-
-  get 'admin_user/new'
-
-  get 'admin_user/edit'
-
-  get 'admin_user/delete'
-
   root  'demo#index'
 
   #authentication actions
