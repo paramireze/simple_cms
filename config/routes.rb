@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'admin_users/index'
+
+  get 'admin_users/new'
+
+  get 'admin_users/edit'
+
+  get 'admin_users/delete'
+
   root  'demo#index'
 
   #authentication actions
@@ -9,6 +17,12 @@ Rails.application.routes.draw do
   post 'access/attempt_login'
   get  'access/logout'
 
+  #gives all 8 actions on admin users
+  resources :admin_users do
+    member do
+      get :delete
+    end
+  end
 
   #gives all 8 actions on subject
   resources :subjects do
