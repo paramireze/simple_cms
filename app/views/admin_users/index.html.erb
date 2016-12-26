@@ -1,2 +1,33 @@
-<h1>AdminUsers#index</h1>
-<p>Find me in app/views/admin_users/index.html.erb</p>
+<% @page_title = "Admin Users" %>
+
+<div class="pages index">
+  <h2>Pages</h2>
+  <%= link_to("add new admin user", new_admin_user_path, :class => 'action new') %>
+
+  <table class="listing" summary="Page list">
+    <tr class="header">
+      <th>id</th>
+      <th>first name</th>
+      <th>last name</th>
+      <th>email</th>
+      <th>username</th>
+      <th>created at</th>
+      <th>password digest</th>
+      <th>action</th>
+    </tr>
+    <% @admin_users.each do |admin_user| %>
+        <tr>
+          <td><%= admin_user.id %></td>
+          <td><%= admin_user.first_name %></td>
+          <td><%= admin_user.last_name %></td>
+          <td><%= admin_user.email %></td>
+          <td><%= admin_user.username %></td>
+          <td><%= admin_user.created_at %></td>
+          <td><%= admin_user.password_digest %></td>
+          <td class="actions">
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+

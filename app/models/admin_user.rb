@@ -11,21 +11,6 @@ class AdminUser < ApplicationRecord
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
   FORBIDDEN_USERNAMES = ['testtest', 'sherlock', 'nohombre']
 
-  #long form validation
-=begin
-  validates_presence_of :first_name
-  validates_length_of :first_name, :maximum => 25
-  validates_presence_of :last_name
-  validates_length_of :last_name, :maximum => 50
-  validates_presence_of :username
-  validates_length_of :username, :within => 8..25
-  validates_uniqueness_of :username
-  validates_presence_of :email
-  validates_length_of :email, :maximum => 100
-  validates_format_of :email, :with => EMAIL_REGEX
-  validates_confirmation_of :email
-=end
-
   validates :first_name,  :presence => true,
                           :length => { :maximum => 25 }
 
@@ -43,6 +28,10 @@ class AdminUser < ApplicationRecord
   validate :username_is_allowed
   validate :no_new_users_on_monday, :on => :create
 
+  # db query manipulations go here!
+  scope :sorted, lambda { order("last_name desc")}
+
+  # custom validation
   private
 
   def username_is_allowed
@@ -57,3 +46,19 @@ class AdminUser < ApplicationRecord
     end
   end
 end
+
+# long form validation
+=begin
+  validates_presence_of :first_name
+  validates_length_of :first_name, :maximum => 25
+  validates_presence_of :last_name
+  validates_length_of :last_name, :maximum => 50
+  validates_presence_of :username
+  validates_length_of :username, :within => 8..25
+  validates_uniqueness_of :username
+  validates_presence_of :email
+  validates_length_of :email, :maximum => 100
+  validates_format_of :email, :with => EMAIL_REGEX
+  validates_confirmation_of :email
+=end
+

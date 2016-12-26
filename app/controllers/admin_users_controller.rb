@@ -2,13 +2,24 @@ class AdminUsersController < ApplicationController
 
   before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 
+  layout "admin"
+
   def index
+    @admin_users = AdminUser.sorted
   end
 
   def new
+    @admin_user = AdminUser.new
   end
 
   def create
+    @admin_user = AdminUser.create(admin_user_params)
+    if @admin_user.save
+      redirect_to(admin_users_path)
+    else
+      @admin_user
+      render('new')
+    end
   end
 
   def edit
