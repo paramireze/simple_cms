@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'public/index'
+
+  get 'public/show'
+
   get 'admin_users/index'
 
   get 'admin_users/new'
