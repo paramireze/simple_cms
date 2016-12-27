@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   #gives all 8 actions on subject
-  resources :subjects do
+  resources :subjects, :except => [:show] do
     member do
       get :delete
     end

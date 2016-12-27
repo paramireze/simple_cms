@@ -1,14 +1,15 @@
 <% @page_title = "Admin Users" %>
+<%= link_to("Back to Menu", admin_path, :class => 'back-link') %>
 
-<div class="pages index">
-  <h2>Pages</h2>
+<div class="admin_users index">
+  <h2>Admin Users</h2>
   <%= link_to("add new admin user", new_admin_user_path, :class => 'action new') %>
 
-  <table class="listing" summary="Page list">
+  <div><%= pluralize(@admin_users.size, 'admin user') %> found</div>
+
+  <table class="listing" summary="Admin User list">
     <tr class="header">
       <th>id</th>
-      <th>first name</th>
-      <th>last name</th>
       <th>email</th>
       <th>username</th>
       <th>created at</th>
@@ -18,9 +19,8 @@
     <% @admin_users.each do |admin_user| %>
         <tr>
           <td><%= admin_user.id %></td>
-          <td><%= admin_user.first_name %></td>
-          <td><%= admin_user.last_name %></td>
-          <td><%= admin_user.email %></td>
+          <td><%= admin_user.name %></td>
+          <td><%= mail_to(admin_user.email) %></td>
           <td><%= admin_user.username %></td>
           <td><%= admin_user.created_at %></td>
           <td><%= admin_user.password_digest %></td>

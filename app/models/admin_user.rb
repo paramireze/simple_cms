@@ -33,6 +33,10 @@ class AdminUser < ApplicationRecord
   # db query manipulations go here!
   scope :sorted, lambda { order("last_name desc")}
 
+  # custom method
+  def name
+    "#{first_name} #{last_name}"
+  end
   # custom validation
   private
 

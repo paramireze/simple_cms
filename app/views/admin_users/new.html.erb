@@ -1,10 +1,11 @@
 <% @page_title = "Admin Users" %>
+<%= link_to("Back to Menu", admin_path, :class => 'back-link') %>
 
-<%= link_to("<< Back to List", admin_users_path, :class => 'back-link') %>
 
 <div class="pages new">
   <h2>Admin User</h2>
 
+<%= link_to("<< Back to List", admin_users_path, :class => 'back-link') %>
   <%= form_for(@admin_user, :url => admin_users_path, :method => 'post') do |f| %>
       <%= render(:partial => 'form', :locals => {:f => f}) %>
 
