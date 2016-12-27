@@ -47,6 +47,7 @@ class AdminUsersController < ApplicationController
     @admin_user = AdminUser.find(params[:id])
     if @admin_user.destroy
       flash[:notice] = "Admin User Destroyed!"
+      redirect_to(admin_users_path)
     else
       flash[:notice] = "Failed to destroy the user"
       render('delete')

@@ -1,2 +1,19 @@
-<h1>AdminUsers#delete</h1>
-<p>Find me in app/views/admin_users/delete.html.erb</p>
+<% @page_title = "Delete Admin User" %>
+
+<%= link_to(" << Back to List", delete_admin_user_path, :class => 'back-link') %>
+
+<div class="pages delete">
+  <h2>Delete Admin Users</h2>
+
+  <%= form_for(@admin_user, :method => 'delete') do  |f| %>
+
+      <p>Are you sure you want to permanently delete this User?</p>
+
+      <p class="reference-name"><%= f.object.first_name %> <%= f.object.last_name %></p>
+
+      <div class="form-buttons">
+        <%= f.submit("Delete Admin User") %>
+      </div>
+
+  <% end %>
+</div>
