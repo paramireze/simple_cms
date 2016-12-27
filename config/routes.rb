@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  root  'demo#index'
+  root  'public#index'
 
   # explicitly set routing for none typical controller actions
   get  'admin', :to => 'access#menu'
@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get  'access/login'
   post 'access/attempt_login'
   get  'access/logout'
-  get  'public/index'
-  get  'public/show'
+  get  'show/:permalink', :to =>'public#show'
 
   # gives all 8 actions on admin users
   resources :admin_users do

@@ -1,10 +1,11 @@
 class Page < ApplicationRecord
 
+  has_many :sections
   belongs_to  :subject, { :optional => false }
   has_and_belongs_to_many :admin_users
 
-  scope :visibile, lambda { where(:visibile => true) }
-  scope :invisibile, lambda { where(:visibile => false) }
+  scope :visible, lambda { where(:visible => true) }
+  scope :invisible, lambda { where(:visible => false) }
   scope :sorted, lambda { order("position asc")}
   scope :newest_first, lambda { order("created_at desc")}
 
