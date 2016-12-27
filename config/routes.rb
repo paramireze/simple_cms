@@ -1,48 +1,39 @@
 Rails.application.routes.draw do
 
-  get 'public/index'
-
-  get 'public/show'
-
-  get 'admin_users/index'
-
-  get 'admin_users/new'
-
-  get 'admin_users/edit'
-
-  get 'admin_users/delete'
 
   root  'demo#index'
 
-  #authentication actions
+  # explicitly set routing for none typical controller actions
   get  'admin', :to => 'access#menu'
   get  'access/menu'
   get  'access/login'
   post 'access/attempt_login'
   get  'access/logout'
+  get  'public/index'
+  get  'public/show'
 
-  #gives all 8 actions on admin users
+  # gives all 8 actions on admin users
   resources :admin_users do
     member do
       get :delete
     end
   end
 
-  #gives all 8 actions on subject
+  # gives all 8 actions on subject
   resources :subjects, :except => [:show] do
     member do
       get :delete
     end
   end
 
-  #gives all 8 actions on sections
+  # gives all 8 actions on sections
   resources :sections do
     member do
       get :delete
     end
   end
 
-  #gives all 8 actions on pages
+  # gives all 8 actions on pages
   resources :pages do
     member do
       get :delete
