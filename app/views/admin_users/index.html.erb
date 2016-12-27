@@ -3,13 +3,14 @@
 
 <div class="admin_users index">
   <h2>Admin Users</h2>
-  <%= link_to("add new admin user", new_admin_user_path, :class => 'action new') %>
 
   <div><%= pluralize(@admin_users.size, 'admin user') %> found</div>
 
+  <%= link_to("add new admin user", new_admin_user_path, :class => 'action new') %>
   <table class="listing" summary="Admin User list">
     <tr class="header">
       <th>id</th>
+      <th>name</th>
       <th>email</th>
       <th>username</th>
       <th>created at</th>
