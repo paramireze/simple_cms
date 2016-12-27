@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get  'access/login'
   post 'access/attempt_login'
   get  'access/logout'
-  get  'show/:permalink', :to =>'public#show'
+  get  'show/:permalink', :to =>'public#show', :as => 'public_show'
 
   # gives all 8 actions on admin users
   resources :admin_users do
