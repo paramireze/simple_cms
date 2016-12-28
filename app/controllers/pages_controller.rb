@@ -2,10 +2,12 @@ class PagesController < ApplicationController
 
   layout 'admin'
 
+  before_action :find_subject
   before_action :find_subjects, :only => [:new, :create, :edit, :update]
   before_action :set_page_count, :only => [:new, :create, :edit, :update]
+
   def index
-    @pages = Page.sorted
+    @pages = @subject.pages.sorted
   end
 
   def show
@@ -13,7 +15,7 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new
+    @page = Page.new(:subject_id => @subject.id)
     @page_count = Page.count + 1
   end
 
@@ -21,7 +23,7 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     if @page.save
       flash[:notice] = "page '#{@page.name}' has been created! GOOD FUCKING JOB!"
-      redirect_to(pages_path)
+      redirect_to(pages_path(:subject_id => @subject.id))
     else
       flash[:notice] = "failed to create"
       @page_count = Page.count + 1
@@ -37,7 +39,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     if @page.update_attributes(page_params)
       flash[:notice] = "hey, you updated a page. Well done matey!"
-      redirect_to(pages_path)
+      redirect_to(pages_path, :subject_id => @subject.id)
     else
       flash[:notice] = "failed update"
       render('edit')
@@ -52,13 +54,18 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "page '#{@page.name}' has been destroyed!"
-    redirect_to(pages_path)
+    redirect_to(pages_path(:subject_id => @subject.id))
   end
 
   private
 
   def page_params
     params.require(:page).permit(:subject_id, :name, :position, :visible, :permalink)
+  end
+
+  def find_subject
+    logger.warn('*** ' + params.inspect + '***')
+    @subject = Subject.find(params[:subject_id])
   end
 
   def find_subjects
