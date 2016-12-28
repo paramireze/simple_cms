@@ -7,7 +7,7 @@ class SectionsController < ApplicationController
   before_action :set_section_count, :only => [:new, :create, :edit, :update]
 
   def index
-    @sections = Section.all
+    @sections = @page.sections.sorted
   end
 
   def show
