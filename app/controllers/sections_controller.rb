@@ -62,6 +62,7 @@ class SectionsController < ApplicationController
   end
 
   def find_page
+    logger.warn('*** ' + params.inspect + '***')
     @page = Page.find(params[:page_id])
   end
 
