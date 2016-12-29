@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
+# allows us to
+gem 'acts_as_list', '~> 0.8.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
