@@ -64,8 +64,8 @@ class PagesController < ApplicationController
   end
 
   def find_subject
-    logger.warn('*** ' + params.inspect + '***')
-    @subject = Subject.find(params[:subject_id])
+    subject_id = params[:subject_id] ? params[:subject_id] : 12
+    @subject = Subject.find(subject_id)
   end
 
   def find_subjects

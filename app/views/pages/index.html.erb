@@ -2,7 +2,7 @@
 <%= link_to("<- back to subjects", subjects_path, :class => 'action list') %>
 
 <div class="pages index">
-  <h2>Pages</h2>
+  <h2>Pages <%= @subject.id %></h2>
   <%= link_to("Add New Page", new_page_path(:subject_id => @subject.id), :class => 'action new') %>
 
   <table class="listing" summary="Page list">

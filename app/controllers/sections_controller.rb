@@ -15,13 +15,15 @@ class SectionsController < ApplicationController
   end
 
   def new
-    @section = Section.new
+    @section = Section.new(:page_id => @page.id)
   end
 
   def create
     @section = Section.new(section_params)
     if @section.save
-      redirect_to(sections_path)
+      flash[:notice] = "hey, you inserted a section!"
+
+      redirect_to(sections_path(:page_id => @page.id))
     else
       flash[:notice] = 'you did not create a record...'
       redirect_to(new_section_path)
@@ -62,7 +64,6 @@ class SectionsController < ApplicationController
   end
 
   def find_page
-    logger.warn('*** ' + params.inspect + '***')
     @page = Page.find(params[:page_id])
   end
 
