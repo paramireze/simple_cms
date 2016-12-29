@@ -13,8 +13,8 @@
     <td><%= f.select(:position, 1..@section_count) %></td>
   </tr>
   <tr>
-    <th>Page Id</th>
-    <td><%= f.select(:page_id, @pages.map {|p| [p.name, p.id]}) %></td>
+    <th>Page </th>
+    <td><%= f.object.page.name %></td>
   </tr>
   <tr>
     <th>Visibile</th>

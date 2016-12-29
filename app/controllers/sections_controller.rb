@@ -3,7 +3,6 @@ class SectionsController < ApplicationController
   layout 'admin'
 
   before_action :find_page
-  before_action :find_pages, :only => [:new, :create, :edit, :update]
   before_action :set_section_count, :only => [:new, :create, :edit, :update]
 
   def index
@@ -20,6 +19,7 @@ class SectionsController < ApplicationController
 
   def create
     @section = Section.new(section_params)
+    @section.page = @page
     if @section.save
       flash[:notice] = "hey, you inserted a section!"
 
@@ -39,7 +39,7 @@ class SectionsController < ApplicationController
 
     if @section.update_attributes(section_params)
       flash[:notice] = "hey, you updated a section. Well done matey!"
-      redirect_to(sections_path)
+      redirect_to(sections_path(:page_id => @page.id))
     else
       flash[:notice] = "failed update you imbicile"
       render('edit')
@@ -54,21 +54,23 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @section.destroy
     flash[:notice] = "section '#{@section.name}' has been destroyed!"
-    redirect_to(sections_path)
+    redirect_to(sections_path(:page_id => @page.id))
   end
 
   private
 
   def section_params
-    params.require(:section).permit(:page_id, :name, :position, :visibile, :content, :content_type)
+    params.require(:section).permit(:name, :position, :visibile, :content, :content_type)
   end
 
   def find_page
+    # @page = Page.find(params[:page_id])
+    logger.info request.query_parameters
+    logger.info "dump qry prms --> #{request.query_parameters['page_id']} "
+    logger.info "params get id --> #{params[:page_id]}"
+    logger.info "params display--> #{params.inspect}"
+    #@page = Page.find(10)
     @page = Page.find(params[:page_id])
-  end
-
-  def find_pages
-    @pages = Page.sorted
   end
 
   def set_section_count
